@@ -1,5 +1,4 @@
 /*
-/*
 Tools needed for this level:
 - Console
 - Remix IDE
