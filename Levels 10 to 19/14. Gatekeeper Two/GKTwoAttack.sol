@@ -20,7 +20,7 @@ passing Ethernaut's GatekeeperTwo contract address.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-contract GatekeeperTwoAttack {
+contract GKTwoAttack {
 
   constructor (address GKTwoAddr) public {
     // If we know that a ^ b = c and that a ^ c = b, 
