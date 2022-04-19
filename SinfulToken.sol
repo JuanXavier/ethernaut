@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol';
 
 contract SinfulToken is ERC20 {
-    constructor (uint256 _totalSupply) ERC20("SinfulToken", "SFTK") {
-        // Execute the _mint function on ERC contract
-        ERC20._mint(msg.sender, _totalSupply);
-    }
-    /*------IN CONSOLE---------
+	constructor(uint256 _totalSupply) ERC20('SinfulToken', 'SFTK') {
+		// Execute the _mint function on ERC contract
+		ERC20._mint(msg.sender, _totalSupply);
+	}
+	/*------IN CONSOLE---------
     - We swap 100 sinful tokens for 100 t1 tokens 
         await contract.swap(sinful, t1, "100")
         

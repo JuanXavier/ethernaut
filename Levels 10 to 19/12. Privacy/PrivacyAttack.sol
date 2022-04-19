@@ -17,13 +17,12 @@ Tools needed for this level:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "./Privacy.sol";
+import './Privacy.sol';
 
 contract PrivacyAttack {
-
 	Privacy privacy;
 
-	constructor(address privacyAddr) {
+	constructor(address privacyAddr) public {
 		privacy = Privacy(privacyAddr);
 	}
 

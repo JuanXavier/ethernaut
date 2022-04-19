@@ -16,6 +16,6 @@ contract ForceAttack {
 	constructor() public payable {}
 
 	function die(address payable _contract) public {
-			selfdestruct (payable (_contract));
+		selfdestruct(payable(_contract));
 	}
 }
