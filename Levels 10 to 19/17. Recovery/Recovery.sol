@@ -1,4 +1,8 @@
 /*
+Tools needed for this level:
+- Console
+- Remix IDE
+
 According to the Ethereum Yellow Paper:
 The address of the new contract is defined as being the rightmost 160 bits (20 bytes) 
 of the Keccak-256 hash of the RLP encoding of the structure containing the sender and
@@ -13,7 +17,7 @@ the account nonce, meaning:
 2.- Get the last 40 digits (20 bytes) and format them like an address.
         lostAddr = "0x" + result.slice(-40)
 
-ALTERNATIVE SOLUTION:
+ALTERNATIVE ADDRESS SOLUTION (SIMPLER):
     Check the internal transactions tab of Ethernaut's recovery address on Etherscan.io
     and click on the "Contract creation" link. That is the lost contract address: 
         https://rinkeby.etherscan.io/address/replace_with_ethernauts_recovery_address
