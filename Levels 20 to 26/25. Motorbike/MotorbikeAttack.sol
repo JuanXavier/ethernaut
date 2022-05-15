@@ -23,7 +23,6 @@ bomb= "replace_with_deployed_contract_address"
 explodeData = web3.eth.abi.encodeFunctionSignature("explode()")
 
 8.-  Encode the _upgradeToAndCall () function signature;
-
 upgradeSignature = {
     name: 'upgradeToAndCall',
     type: 'function',
