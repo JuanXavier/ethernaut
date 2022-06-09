@@ -42,7 +42,7 @@ contract DetectionBot is IDetectionBot {
 		uint256 value;
 		address origSender;
 
-		// decode msgData params, loding them from their calldata location
+		// decode msgData params, loading them from their calldata location
 		assembly {
 			to := calldataload(0x68)
 			value := calldataload(0x88)
@@ -50,7 +50,7 @@ contract DetectionBot is IDetectionBot {
 		}
 
 		// If the sender is vault address, raise an alert for the attempt to transfer the
-		//underlying token via the legacy token.
+		// underlying token via the legacy token.
 		if (origSender == vault) {
 			Forta(msg.sender).raiseAlert(user);
 		}
