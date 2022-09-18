@@ -15,7 +15,7 @@ passing Ethernaut's Telephone contract address to the constructor.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import './Telephone.sol';
+import "./Telephone.sol";
 
 contract TelephoneAttack {
 	Telephone public victimContract;

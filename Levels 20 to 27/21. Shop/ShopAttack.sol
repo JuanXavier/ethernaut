@@ -11,7 +11,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import './Shop.sol';
+import "./Shop.sol";
 
 contract ShopAttack {
 	function attack(address shopAddr) public {

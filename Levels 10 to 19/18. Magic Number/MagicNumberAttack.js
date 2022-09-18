@@ -5,7 +5,7 @@
 // 1.- Declare the bytecode on the console. Here are two possible bytecodes
 // 		 equally effective. (Each bytecode is made out of the concatenation of
 //  	 creation code + runtime code)
-bytecode1 = '600a600c600039600a6000f3602a60505260206050f3';
+bytecode1 = "600a600c600039600a6000f3602a60505260206050f3"
 
 /* CREATION CODE ===> 60 0a 60 0c 60 00 39 60 0a 60 00 f3
 
@@ -36,7 +36,7 @@ RUNTIME CODE ===> 60 2a 60 50 52 60 20 60 50 f3
 f3 ===> return
 */
 
-bytecode2 = '69602a60005260206000f3600052600a6016f3';
+bytecode2 = "69602a60005260206000f3600052600a6016f3"
 
 /* 
 CREATION CODE ===> 69 60 2a 60 00 52 60 20 60 00 f3 
@@ -66,10 +66,10 @@ f3 ===> return
 */
 
 // 2.- Create the contract passing the selected buytecode as the data
-tx = await web3.eth.sendTransaction({from: player, data: bytecode});
+tx = await web3.eth.sendTransaction({ from: player, data: bytecode })
 
 // 3.- Obtain the address of the created contract.
-solverAddr = tx.contractAddress;
+solverAddr = tx.contractAddress
 
 // 4.- Set the new contract as the solver.
-await contract.setSolver(solverAddr);
+await contract.setSolver(solverAddr)

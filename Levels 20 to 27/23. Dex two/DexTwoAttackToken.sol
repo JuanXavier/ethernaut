@@ -38,12 +38,12 @@ String(await contract.balanceOf(tk2, instance));
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol';
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
 
 contract DexTwoAttackToken is ERC20 {
 	uint256 supply = 400;
 
-	constructor() ERC20('AttackToken', 'ATK') {
+	constructor() ERC20("AttackToken", "ATK") {
 		ERC20._mint(msg.sender, supply);
 	}
 }

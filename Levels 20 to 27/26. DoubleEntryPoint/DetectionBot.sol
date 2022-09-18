@@ -27,8 +27,8 @@ await web3.eth.sendTransaction({from: player, to: forta, data: data})
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts/access/Ownable.sol';
-import './DoubleEntryPoint.sol';
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "./DoubleEntryPoint.sol";
 
 contract DetectionBot is IDetectionBot {
 	address public immutable vault;

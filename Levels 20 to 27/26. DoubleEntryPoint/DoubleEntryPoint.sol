@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import '@openzeppelin/contracts/access/Ownable.sol';
-import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 interface DelegateERC20 {
 	function delegateTransfer(
@@ -29,7 +29,7 @@ contract Forta is IForta {
 	mapping(address => uint256) public botRaisedAlerts;
 
 	function setDetectionBot(address detectionBotAddress) external override {
-		require(address(usersDetectionBots[msg.sender]) == address(0), 'DetectionBot already set');
+		require(address(usersDetectionBots[msg.sender]) == address(0), "DetectionBot already set");
 		usersDetectionBots[msg.sender] = IDetectionBot(detectionBotAddress);
 	}
 
@@ -55,7 +55,7 @@ contract CryptoVault {
 	}
 
 	function setUnderlying(address latestToken) public {
-		require(address(underlying) == address(0), 'Already set');
+		require(address(underlying) == address(0), "Already set");
 		underlying = IERC20(latestToken);
 	}
 
@@ -65,7 +65,7 @@ contract CryptoVault {
 	}
 }
 
-contract LegacyToken is ERC20('LegacyToken', 'LGT'), Ownable {
+contract LegacyToken is ERC20("LegacyToken", "LGT"), Ownable {
 	DelegateERC20 public delegate;
 
 	function mint(address to, uint256 amount) public onlyOwner {
@@ -85,7 +85,7 @@ contract LegacyToken is ERC20('LegacyToken', 'LGT'), Ownable {
 	}
 }
 
-contract DoubleEntryPoint is ERC20('DoubleEntryPointToken', 'DET'), DelegateERC20, Ownable {
+contract DoubleEntryPoint is ERC20("DoubleEntryPointToken", "DET"), DelegateERC20, Ownable {
 	address public cryptoVault;
 	address public player;
 	address public delegatedFrom;
@@ -105,7 +105,7 @@ contract DoubleEntryPoint is ERC20('DoubleEntryPointToken', 'DET'), DelegateERC2
 	}
 
 	modifier onlyDelegateFrom() {
-		require(msg.sender == delegatedFrom, 'Not legacy contract');
+		require(msg.sender == delegatedFrom, "Not legacy contract");
 		_;
 	}
 
@@ -123,7 +123,7 @@ contract DoubleEntryPoint is ERC20('DoubleEntryPointToken', 'DET'), DelegateERC2
 
 		// Check if alarms have been raised
 		if (forta.botRaisedAlerts(detectionBot) > previousValue)
-			revert('Alert has been triggered, reverting');
+			revert("Alert has been triggered, reverting");
 	}
 
 	function delegateTransfer(
